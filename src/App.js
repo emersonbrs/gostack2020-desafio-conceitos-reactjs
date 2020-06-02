@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
 		api.get('repositories').then((response) => {
 			setRepositories(response.data)
-		})
+		});
 	}, []);
 
   async function handleAddRepository() {
@@ -23,8 +23,10 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    // TODO
-  }
+		await api.delete(`repositories/${id}`)
+
+		setRepositories(repositories.filter((repository) => repository.id !== id))
+	}
 
   return (
     <div>
