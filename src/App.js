@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import api from './services/api'
 
+import Header from './components/Header';
+
 import "./styles.css";
 
 function App() {
@@ -31,14 +33,16 @@ function App() {
   return (
     <div>
       <ul data-testid="repository-list">
-      {repositories.map((repository) => (
-					<li key={repository.id}>
-						{repository.title}
-						<button onClick={() => handleRemoveRepository(repository.id)}>
-							Remover Repositório
-						</button>
-					</li>
-				))}
+			<Header>
+				{repositories.map((repository) => (
+						<li key={repository.id}>
+							{repository.title}
+							<button onClick={() => handleRemoveRepository(repository.id)}>
+								Remover Repositório
+							</button>
+						</li>
+					))}
+				</Header>
       </ul>
 
       <button onClick={handleAddRepository}>Adicionar Repositório</button>
